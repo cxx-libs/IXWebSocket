@@ -44,8 +44,8 @@ namespace ix
             }
             // strip all \n \r 
             std::size_t end = i;
-            auto rbegin = std::reverse_iterator(line + end);
-            auto rend   = std::reverse_iterator(line);
+            auto rbegin = std::reverse_iterator<char*>(line + end);
+            auto rend   = std::reverse_iterator<char*>(line);
             auto it = std::find_if(rbegin,rend,[](const unsigned char c){return c != '\r' && c != '\n'; });
             end = static_cast<std::size_t>(it.base() - line);
             line[end] = '\0';
