@@ -44,12 +44,12 @@ namespace ix
             }
             // strip all \n \r 
             std::size_t end = i;
-            auto rbegin = std::make_reverse_iterator(line + end);
-            auto rend   = std::make_reverse_iterator(line);
+            auto rbegin = std::reverse_iterator(line + end);
+            auto rend   = std::reverse_iterator(line);
             auto it = std::find_if(rbegin,rend,[](const unsigned char c){return c != '\r' && c != '\n'; });
             end = static_cast<std::size_t>(it.base() - line);
             line[end] = '\0';
-            
+
             // line is a single header entry. split by ':', and add it to our
             // header map. ignore lines with no colon.
             if (colon > 0)
